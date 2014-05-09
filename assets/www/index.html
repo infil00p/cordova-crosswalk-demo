@@ -1,0 +1,40 @@
+<html>
+  <head>
+    <title>OpenWest Demo</title>
+  </head>
+  <body>
+    <script src="js/three.min.js"></script>
+    <script src="js/ColladaLoader.js"></script>
+    <script>
+      var renderer = new THREE.WebGLRenderer();
+      renderer.setSize(window.innerWidth, window.innerHeight);
+      document.body.appendChild(renderer.domElement);
+
+      var scene = new THREE.Scene();
+      var camera = new THREE.PerspectiveCamera( 45, window.innerWidth/window.innerHeight, 1, 10000);
+      
+      new THREE.ColladaLoader().load('BuildBotStl.dae', function(collada) {
+        var model = collada.scene;
+        model.scale.set(15, 15, 15);
+        model.rotation.x = -Math.PI/2;
+        scene.add(model);
+      });
+
+      var light = new THREE.AmbientLight(0x404040);
+      scene.add(light);
+
+      camera.position.z = 300;
+
+      function animate(t) {
+        camera.position.x = Math.sin(t/1000)*300;
+        camera.position.y = 150;
+        camera.position.z = Math.cos(t/1000)*300;
+        camera.lookAt(scene.position);
+        renderer.render(scene, camera);
+        window.requestAnimationFrame(animate, renderer.domElement);
+      }
+
+      animate(new Date().getTime());
+    </script>
+  </body>
+</html>

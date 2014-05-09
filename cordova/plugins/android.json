@@ -1,0 +1,19 @@
+{
+    "prepare_queue": {
+        "installed": [],
+        "uninstalled": []
+    },
+    "config_munge": {
+        "res/xml/config.xml": {
+            "/*": {
+                "<preference name=\"webView\" value=\"org.apache.cordova.engine.crosswalk.XWalkCordovaWebView\" />": 1
+            }
+        }
+    },
+    "installed_plugins": {
+        "org.apache.cordova.engine.crosswalk": {
+            "PACKAGE_NAME": "org.apache.cordova.xwalkexample"
+        }
+    },
+    "dependent_plugins": {}
+}
